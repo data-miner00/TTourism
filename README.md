@@ -26,5 +26,5 @@ This application will cover at least 10 tourist spots in Taipei.
 
 ## Task List
 * [x] Initiatiate a repo
-* [] Design the interface, components, etc
-* [] Discussion
+* [ ] Design the interface, components, etc
+* [ ] Discussion
