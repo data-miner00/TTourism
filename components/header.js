@@ -1,6 +1,14 @@
+//
+//  This files is the custom components for the header
+//
+
+/* Imports
+=========================================== */
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+/* Component Definition
+=========================================== */
 export default function Header() {
     return (
         <View style={styles.header}>
@@ -9,6 +17,8 @@ export default function Header() {
     );
 }
 
+/* Component Styles
+=========================================== */
 const styles = StyleSheet.create({
     header: {
         height: 50,

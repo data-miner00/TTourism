@@ -1,9 +1,23 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+//
+//  This is the component that gives the preview of the attraction
+//
 
-export default function Window({ place }) {
+/* Imports
+=========================================== */
+import React from 'react';
+import { 
+    StyleSheet, 
+    View, 
+    Text, 
+    Image, 
+    TouchableOpacity 
+} from 'react-native';
+
+/* Component Definition
+=========================================== */
+export default function Window({ place, navigation }) {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Details', place)}>
             <View style={styles.container}>
                 <Text>{place.place}</Text>
                 <Text>{place.tags}</Text>
@@ -18,6 +32,8 @@ export default function Window({ place }) {
     );
 }
 
+/* Component Styles
+=========================================== */
 const styles = StyleSheet.create({
     container: {
 
@@ -25,5 +41,5 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 100,
-    }
+    },
 });

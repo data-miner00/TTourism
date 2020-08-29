@@ -26,5 +26,13 @@ This application will cover at least 10 tourist spots in Taipei.
 
 ## Task List
 * [x] Initiatiate a repo
-* [ ] Design the interface, components, etc
+* [x] Design the interface, components, etc
 * [ ] Discussion
+* [ ] Connect to Firebase
+* [ ] Use weather API
+* [ ] Propose other API
+
+## Screens
+- Home screen (shows the different attractions)
+- About screen (details and informations about the app)
+- Detail screen (screen where one of the attraction on home screen was tapped)
