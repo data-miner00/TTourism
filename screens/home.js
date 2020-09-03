@@ -126,6 +126,33 @@ export default function Home({ navigation }) {
           address: 'Zhongzheng Road, Danshui District, New Taipei City, Taiwan',
           phonono: 'Wait ar...',
         },
+        {
+            key: 11,
+            place: 'Lovers’ Bridge',
+            tags: 'Bridge',
+            imguri: 'https://img.theculturetrip.com/1440x960/smart/wp-content/uploads/2018/03/1991990-2.jpg',
+            description: 'Also in Danshui, you’ll find Lovers’ Bridge by Fisherman’s Wharf. It’s a nice place to take some photos and enjoy a spot of lunch in one of the many local seafood restaurants.',
+            address: '號, 199 Guanhai Road, New Taipei City, 251, Taiwan',
+            phonono: '+886228058476',
+        },
+        {
+            key: 12,
+            place: 'Longshan Temple',
+            tags: 'Buddhist Temple, Shrine',
+            imguri: 'https://img.theculturetrip.com/1440x960/smart/wp-content/uploads/2018/03/1991999.jpg',
+            description: 'Arguably the most famous temple in Taiwan, Longshan Temple has survived innumerable earthquakes, typhoons, and a few wars. Damaged by bombs during World War II, it has been lovingly restored by the local community.',
+            address: '211 Guangzhou Street, Taipei City, 10853, Taiwan',
+            phonono: '+886223025162',
+        },
+        {
+            key: 13,
+            place: 'National Taiwan Museum & 228 Memorial Park',
+            tags: 'Building, Memorial, Museum, Park',
+            imguri: 'https://img.theculturetrip.com/1440x960/smart/wp-content/uploads/2018/03/1024px-national_taiwan_museum_front_20070912.jpg',
+            description: 'The National Taiwan Museum is two separate buildings: the main wing is located in 228 Memorial Park, while the second building is across the street in a former bank. Both buildings are filled with interesting exhibits on the natural history of Taiwan and its aboriginal tribes. When you’re finished here, you can take a walk through the park.',
+            address: '1號 Section 1, Nanchang Road, Bo\'ai Special Zone, Taipei City, 100, Taiwan',
+            phonono: '+886223973666',
+        },
     ];
     
     const [place, setPlace] = useState(attractions);

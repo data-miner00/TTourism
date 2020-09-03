@@ -4,7 +4,7 @@ This is a project that lets tourist to have a better experience when travelling 
 ## Coverage
 This application will cover at least 10 tourist spots in Taipei.
 
-- To-add
+- Source: [Culture Trip: Top 20 Must Visit Attractions In Taipei](https://theculturetrip.com/asia/taiwan/articles/20-must-visit-attractions-in-taipei/)
 
 ## Contributors
 
@@ -36,3 +36,16 @@ This application will cover at least 10 tourist spots in Taipei.
 - Home screen (shows the different attractions)
 - About screen (details and informations about the app)
 - Detail screen (screen where one of the attraction on home screen was tapped)
+
+## How To Run
+1. Fork the project to your profile
+2. Clone to your local repository
+3. cd into the directory and run `npm install` first
+4. Then you are done
+
+## Suggestion
+Do you guys prefer `Functional` component or `Class` component?
+This project is using functional component so if class component is okay also
+
+## Expo --> React-Native
+Convert to React Native if possible.
