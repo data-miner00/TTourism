@@ -4,46 +4,44 @@
 
 /* Imports
 =========================================== */
-import React from 'react';
-import { 
-    StyleSheet, 
-    View, 
-    Text, 
-    ImageBackground, 
-    Image,
-    TouchableOpacity 
-} from 'react-native';
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
 /* Component Definition
 =========================================== */
 export default function Window({ place, navigation }) {
-    return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details', place)}>
-            <View style={styles.container}>
-                <Text>{place.place}</Text>
-                <Text>{place.tags}</Text>
-                <Image 
-                    style={styles.image}
-                    source={{
-                    uri: place.imguri,
-                    }}
-                />
-            </View>
-        </TouchableOpacity>
-    );
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate("Details", place)}>
+      <View style={styles.container}>
+        <Text>{place.place}</Text>
+        <Text>{place.tags}</Text>
+        <Image
+          style={styles.image}
+          source={{
+            uri: place.imguri,
+          }}
+        />
+      </View>
+    </TouchableOpacity>
+  );
 }
 
 /* Component Styles
 =========================================== */
 const styles = StyleSheet.create({
-    container: {
-
-    },
-    image: {
-        width: '100%',
-        height: 150,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginBottom: 20,
-    },
+  container: {},
+  image: {
+    width: "100%",
+    height: 150,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginBottom: 20,
+  },
 });
