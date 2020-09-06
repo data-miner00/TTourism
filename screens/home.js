@@ -9,10 +9,9 @@ import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 
 // Importing global styles
 import { global } from "../styles/global";
-// Importing custom components
-import Header from "../components/header";
-import Window from "../components/window";
 
+/* Weather API Credentials
+=========================================== */
 const APP_ID = "535b799ef7661f7c78e6dd820476ac63";
 const CITY_ID = "1665148";
 const URL = `https://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&appid=${APP_ID}`;
@@ -207,7 +206,7 @@ export default function Home({ navigation }) {
   return (
     <View style={global.container}>
       <Button
-        title="add a destination manually"
+        title="add attraction"
         onPress={() => navigation.navigate("Add")}
       />
       <Button
@@ -215,17 +214,18 @@ export default function Home({ navigation }) {
         onPress={() => navigation.navigate("Explore")}
       />
       <Button
-        title="view favourite"
+        title="favourite"
         onPress={() => navigation.navigate("Favourite")}
       />
       <Button
-        title="view full list"
+        title="full list"
         onPress={() => navigation.navigate("Full", { attractions: place })}
       />
       <Button
         title="weather"
         onPress={() => navigation.navigate("Weather", fullRes)}
       />
+      <Button title="about" onPress={() => navigation.navigate("About")} />
       <Text>Taipei weather: {weather} </Text>
     </View>
   );

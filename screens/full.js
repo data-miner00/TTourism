@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
 export default function Full({ navigation }) {
   const place = navigation.getParam("attractions");
 
+  useEffect(() => {
+    console.log("Full screen is rendered");
+  });
+
   return (
     <View style={global.container}>
       <View style={styles.list}>

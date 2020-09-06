@@ -34,3 +34,5 @@ export default function Explore({ navigation }) {
     </View>
   );
 }
+
+Explore["navigationOptions"] = (props) => ({ title: "Suggested Place" });
