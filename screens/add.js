@@ -18,7 +18,19 @@ import {
 // Importing global styles
 import { global } from "../styles/global";
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  textInput: {
+    padding: 10,
+    fontSize: 20,
+    borderBottomColor: "white",
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: "blue",
+  },
+});
 
 export default function Add({ navigation }) {
   // On Mount
@@ -28,7 +40,12 @@ export default function Add({ navigation }) {
 
   return (
     <View style={global.container}>
-      <Text></Text>
+      <Text>Place Name:</Text>
+      <TextInput style={styles.textInput}></TextInput>
+      <Text>Tags:</Text>
+      <TextInput style={styles.textInput}></TextInput>
     </View>
   );
 }
+
+Add["navigationOptions"] = (props) => ({ title: "Add Attraction" });

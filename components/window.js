@@ -20,14 +20,17 @@ export default function Window({ place, navigation }) {
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Details", place)}>
       <View style={styles.container}>
-        <Text>{place.place}</Text>
-        <Text>{place.tags}</Text>
-        <Image
+        <ImageBackground
           style={styles.image}
           source={{
             uri: place.imguri,
           }}
-        />
+        >
+          <View style={styles.label}>
+            <Text style={styles.text}>{place.place}</Text>
+            <Text style={styles.text}>{place.tags}</Text>
+          </View>
+        </ImageBackground>
       </View>
     </TouchableOpacity>
   );
@@ -43,5 +46,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     marginBottom: 20,
+  },
+  label: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    height: 40,
+    width: "100%",
+  },
+  text: {
+    color: "white",
+    textAlign: "center",
   },
 });

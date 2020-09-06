@@ -15,6 +15,7 @@ import Explore from "../screens/explore";
 import About from "../screens/about";
 import Favourite from "../screens/favourite";
 import Full from "../screens/full";
+import Weather from "../screens/weather";
 
 /* Screen Registration
 =========================================== */
@@ -23,7 +24,6 @@ import Full from "../screens/full";
 let screens = {
   Home: {
     screen: Home,
-    headerTitle: "WaFoodWa",
   },
   Details: {
     screen: Details,
@@ -42,6 +42,9 @@ let screens = {
   },
   Favourite: {
     screen: Favourite,
+  },
+  Weather: {
+    screen: Weather,
   },
 };
 

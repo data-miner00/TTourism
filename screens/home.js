@@ -206,7 +206,6 @@ export default function Home({ navigation }) {
 
   return (
     <View style={global.container}>
-      <Header />
       <Button
         title="add a destination manually"
         onPress={() => navigation.navigate("Add")}
@@ -223,17 +222,13 @@ export default function Home({ navigation }) {
         title="view full list"
         onPress={() => navigation.navigate("Full", { attractions: place })}
       />
+      <Button
+        title="weather"
+        onPress={() => navigation.navigate("Weather", fullRes)}
+      />
       <Text>Taipei weather: {weather} </Text>
-      <View style={styles.list}>
-        <FlatList
-          data={place}
-          renderItem={({ item }) => (
-            <Window place={item} navigation={navigation} />
-          )}
-        />
-      </View>
     </View>
   );
 }
 
-Home["navigationOptions"] = (props) => ({ title: "Taipei No 1" });
+Home["navigationOptions"] = (props) => ({ title: "Taipei Tourist Guide" });
