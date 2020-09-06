@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 /* Component Definition
 =========================================== */
 export default function Home({ navigation }) {
+  const [fullRes, setFullRes] = useState({});
   const [weather, setWeather] = useState("why cant change");
   // ComponentDidMount
   useEffect(() => {
@@ -41,6 +42,7 @@ export default function Home({ navigation }) {
       .then((responseJSON) => {
         console.log(responseJSON);
         console.log(typeof responseJSON.weather[0].main);
+        setFullRes(responseJSON);
         return responseJSON.weather[0].main;
       })
       .then((weather) => setWeather(weather))
@@ -209,6 +211,18 @@ export default function Home({ navigation }) {
         title="add a destination manually"
         onPress={() => navigation.navigate("Add")}
       />
+      <Button
+        title="explore city"
+        onPress={() => navigation.navigate("Explore")}
+      />
+      <Button
+        title="view favourite"
+        onPress={() => navigation.navigate("Favourite")}
+      />
+      <Button
+        title="view full list"
+        onPress={() => navigation.navigate("Full", { attractions: place })}
+      />
       <Text>Taipei weather: {weather} </Text>
       <View style={styles.list}>
         <FlatList
@@ -221,3 +235,5 @@ export default function Home({ navigation }) {
     </View>
   );
 }
+
+Home["navigationOptions"] = (props) => ({ title: "Taipei No 1" });

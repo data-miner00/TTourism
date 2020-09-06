@@ -11,6 +11,10 @@ import { createAppContainer } from "react-navigation";
 import Home from "../screens/home";
 import Details from "../screens/details";
 import Add from "../screens/add";
+import Explore from "../screens/explore";
+import About from "../screens/about";
+import Favourite from "../screens/favourite";
+import Full from "../screens/full";
 
 /* Screen Registration
 =========================================== */
@@ -19,12 +23,25 @@ import Add from "../screens/add";
 let screens = {
   Home: {
     screen: Home,
+    headerTitle: "WaFoodWa",
   },
   Details: {
     screen: Details,
   },
   Add: {
     screen: Add,
+  },
+  Explore: {
+    screen: Explore,
+  },
+  About: {
+    screen: About,
+  },
+  Full: {
+    screen: Full,
+  },
+  Favourite: {
+    screen: Favourite,
   },
 };
 

@@ -30,6 +30,11 @@ export default function Details({ navigation }) {
   let address = navigation.getParam("address");
   let phonono = navigation.getParam("phonono");
 
+  // On Mount
+  useEffect(() => {
+    console.log("Details screen is rendered");
+  }, []);
+
   return (
     <View style={global.container}>
       <Image

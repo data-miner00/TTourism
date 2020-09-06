@@ -23,5 +23,10 @@ const styles = StyleSheet.create({});
 /* Component Definition
 =========================================== */
 export default function About({ navigation }) {
+  // On Mount
+  useEffect(() => {
+    console.log("About screen is rendered");
+  }, []);
+
   return <View style={global.container}></View>;
 }
