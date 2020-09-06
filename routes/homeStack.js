@@ -16,6 +16,7 @@ import About from "../screens/about";
 import Favourite from "../screens/favourite";
 import Full from "../screens/full";
 import Weather from "../screens/weather";
+import Settings from "../screens/settings";
 
 /* Screen Registration
 =========================================== */
@@ -45,6 +46,9 @@ let screens = {
   },
   Weather: {
     screen: Weather,
+  },
+  Settings: {
+    screen: Settings,
   },
 };
 

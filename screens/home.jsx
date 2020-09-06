@@ -4,7 +4,7 @@
 
 /* Imports
 =========================================== */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 
 // Importing global styles
@@ -36,6 +36,11 @@ export default function Home({ navigation }) {
   const [weather, setWeather] = useState("why cant change");
   // ComponentDidMount
   useEffect(() => {
+    console.log("Home screen loaded");
+  }, []);
+
+  // Save the expensive calls
+  useMemo(() => {
     fetch(URL)
       .then((response) => response.json())
       .then((responseJSON) => {
@@ -47,6 +52,7 @@ export default function Home({ navigation }) {
       .then((weather) => setWeather(weather))
       .then(() => console.log(weather))
       .catch(console.error);
+    console.log("Fetch URL called");
   }, []);
 
   useEffect(() => console.log(weather), [weather]);
@@ -202,6 +208,7 @@ export default function Home({ navigation }) {
   ];
 
   const [place, setPlace] = useState(attractions);
+  const [theme, setTheme] = useState("light");
 
   return (
     <View style={global.container}>
@@ -226,6 +233,15 @@ export default function Home({ navigation }) {
         onPress={() => navigation.navigate("Weather", fullRes)}
       />
       <Button title="about" onPress={() => navigation.navigate("About")} />
+      <Button
+        title="settings"
+        onPress={() =>
+          navigation.navigate("Settings", {
+            setTheme: (theme) => setTheme(theme),
+          })
+        }
+      />
+      <Text>Theme: {theme}</Text>
       <Text>Taipei weather: {weather} </Text>
     </View>
   );

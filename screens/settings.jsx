@@ -1,5 +1,5 @@
 //
-//  This is the About Screen that explains this application
+//  This is the Setting Screen that allows custom settings
 //
 
 /* Imports
@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   FlatList,
   TouchableOpacity,
 } from "react-native";
@@ -22,11 +23,18 @@ const styles = StyleSheet.create({});
 
 /* Component Definition
 =========================================== */
-export default function About({ navigation }) {
-  // On Mount
-  useEffect(() => {
-    console.log("About screen is rendered");
-  }, []);
-
-  return <View style={global.container}></View>;
+export default function Settings({ navigation }) {
+  const setTheme = navigation.getParam("setTheme");
+  return (
+    <View style={global.container}>
+      <Text>Theme</Text>
+      <Button
+        title="save"
+        onPress={() => {
+          setTheme("DARK");
+          navigation.goBack();
+        }}
+      />
+    </View>
+  );
 }
