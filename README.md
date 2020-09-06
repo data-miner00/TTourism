@@ -34,13 +34,21 @@ This application will cover at least 10 tourist spots in Taipei.
 - [ ] Connect to Firebase
 - [x] Use weather API
 - [ ] Propose other API
+- [ ] Add icons
+- [ ] Tabbed application
+- [ ] Decide a theme for this (colours, fonts, font sizes, etc.)
 
 ## Screens
 
-- Home screen (shows the different attractions)
+- ~~Home screen (shows the different attractions)~~
 - About screen (details and informations about the app)
 - Detail screen (screen where one of the attraction on home screen was tapped)
 - Add screen (screen to add the desired attraction by self)
+- Home screen (shows buttons for different screens and ONE randomly suggested place)
+- Favourite screen (shows all favourited attractions)
+- Full list screen (shows all the attractions available)
+- Weather screen (shows all details about weather iin Taipei)
+- Explore screen (randomly suggest places)
 
 ## How To Run
 
