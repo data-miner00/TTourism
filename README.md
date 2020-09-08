@@ -14,7 +14,7 @@ This application will cover at least 10 tourist spots in Taipei.
 | -------------- | --------------- | --- | -------------------- |
 | data-miner00   | Chong Mum Khong | 22  | noname1@1utar.my     |
 | MelonEatingBot | Lim Jing Chun   | 21  | limjingchun@1utar.my |
-| xRovern        | Goh Pei Xuan    | 21  | ?                    |
+| xRovern        | Goh Pei Xuan    | 21  | roverngoh@1utar.my   |
 | faiishere      | Yin Siew Fai    | 22  | ?                    |
 | WeiYan1289     | Tan Wei Yan     | 21  | twy990926@1utar.my   |
 
