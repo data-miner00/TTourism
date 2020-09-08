@@ -12,7 +12,6 @@ import {
   FlatList,
   ScrollView,
   ActivityIndicator,
-  Picker,
   TextInput,
 } from "react-native";
 

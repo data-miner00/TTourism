@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "bold",
   },
-  icon: {},
+  title: {
+    fontSize: 19,
+  },
 });
 
 /* Component Definition
@@ -66,12 +68,12 @@ export default function Weather({ navigation }) {
     </View>
   ) : (
     <View style={global.container}>
-      <Text style={styles.text}>{name}</Text>
-      <Text style={styles.text}>{humidity} %</Text>
-      <Text style={styles.text}>{temperature} deg</Text>
-      <Text style={styles.text}>{weather}</Text>
-      <Text style={styles.text}>{description}</Text>
-      <Text style={styles.text}>{pressure} kPa</Text>
+      <Text style={styles.title}>{name}</Text>
+      <Text style={styles.text}>Humidity: {humidity}%</Text>
+      <Text style={styles.text}>Temperature: {temperature}°C</Text>
+      <Text style={styles.text}>Weather: {weather}</Text>
+      <Text style={styles.text}>Description: {description}</Text>
+      <Text style={styles.text}>Pressure: {pressure}kPa</Text>
     </View>
   );
 }

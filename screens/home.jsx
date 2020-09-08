@@ -28,7 +28,6 @@ const URL = `https://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&appid
 var headerColors = {
   headerTintColor: "white",
   headerBackground: "#373D20",
-  bgColor: "#EFF1ED",
 };
 
 /* Component Styles
@@ -36,7 +35,6 @@ var headerColors = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: headerColors.bgColor,
   },
   seperator: {
     marginVertical: 8,
@@ -58,6 +56,7 @@ export default function Home({ navigation }) {
   const Seperator = () => <View style={styles.seperator} />;
   const [isLoading, setIsLoading] = useState(true);
   const [theme, setTheme] = useState("theme1");
+  const [bgColor, setBgColor] = useState("#EFF1ED");
   const [primColor, setPrimColor] = useState();
   const [secColor, setSecColor] = useState();
 
@@ -76,8 +75,8 @@ export default function Home({ navigation }) {
     headerColors = {
       headerTintColor: theme.headerTintColor,
       headerBackground: theme.headerBackground,
-      bgColor: theme.backgroundColor,
     };
+    setBgColor(theme.backgroundColor);
     setPrimColor(theme.buttonPrimColor);
     setSecColor(theme.buttonSecColor);
   }
@@ -94,7 +93,7 @@ export default function Home({ navigation }) {
   =========================================== */
   // Make sure that fetch URL will not be called each time the component
   // rerenders by changing themes
-  useMemo(() => {
+  useEffect(() => {
     fetch(URL)
       .then((response) => response.json())
       .then((responseJSON) => {
@@ -268,7 +267,7 @@ export default function Home({ navigation }) {
       <ActivityIndicator size="large" color="#9E9E9E" />
     </View>
   ) : (
-    <View style={global.container}>
+    <View style={[global.container, { backgroundColor: bgColor }]}>
       <Button
         title="attractions list"
         color={primColor}
