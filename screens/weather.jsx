@@ -16,10 +16,30 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
     marginBottom: 10,
-    fontWeight: "bold",
+    paddingTop: 4,
+    color: "white",
   },
   title: {
     fontSize: 19,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  box1: {
+    backgroundColor: "#639FAB",
+    padding: 10,
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  box2: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#1C5D99",
+  },
+  important: {
+    fontWeight: "bold",
+    color: "#1c5d99",
+    fontSize: 22,
   },
 });
 
@@ -32,7 +52,7 @@ export default function Weather({ navigation }) {
     console.log("Weather screen is rendered");
 
     // Set Timeout to bring out the loading effect XD
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => setIsLoading(false), 300);
   }, []);
 
   /* Decomposing the response Json Object
@@ -57,8 +77,8 @@ export default function Weather({ navigation }) {
 
   /* Functions
   =========================================== */
-  function farenheitToCelcius(fval) {
-    return ((fval - 32) * 5) / 9;
+  function kelvinToCelcius(kval) {
+    return kval - 273.15;
   }
   function getRealWeatherDescrption(desc) {}
 
@@ -69,11 +89,27 @@ export default function Weather({ navigation }) {
   ) : (
     <View style={global.container}>
       <Text style={styles.title}>{name}</Text>
-      <Text style={styles.text}>Humidity: {humidity}%</Text>
-      <Text style={styles.text}>Temperature: {temperature}°C</Text>
-      <Text style={styles.text}>Weather: {weather}</Text>
-      <Text style={styles.text}>Description: {description}</Text>
-      <Text style={styles.text}>Pressure: {pressure}kPa</Text>
+      <View style={styles.box1}>
+        <Text style={styles.text}>
+          Humidity: <Text style={styles.important}>{humidity}%</Text>
+        </Text>
+      </View>
+      <View style={styles.box1}>
+        <Text style={styles.text}>
+          Temperature: {kelvinToCelcius(temperature).toFixed(2)}°C
+        </Text>
+      </View>
+      <View style={styles.box1}>
+        <Text style={styles.text}>
+          Weather: <Text style={styles.important}>{weather}</Text>
+        </Text>
+      </View>
+      <View style={styles.box1}>
+        <Text style={styles.text}>Description: {description}</Text>
+      </View>
+      <View style={styles.box1}>
+        <Text style={styles.text}>Pressure: {pressure}kPa</Text>
+      </View>
     </View>
   );
 }

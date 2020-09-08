@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
 =========================================== */
 export default function Details({ navigation }) {
   // Getting back the original data
-  let name = navigation.getParam("place");
+  let name = navigation.getParam("name");
   let tags = navigation.getParam("tags");
-  let imguri = navigation.getParam("imguri");
-  let desc = navigation.getParam("description");
+  let imguri = navigation.getParam("imgurl");
+  let desc = navigation.getParam("desc");
   let address = navigation.getParam("address");
-  let phone = navigation.getParam("phonono");
+  let phone = navigation.getParam("phone");
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -81,7 +81,7 @@ export default function Details({ navigation }) {
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 300);
   }, []);
 
   return isLoading ? (
