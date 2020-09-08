@@ -14,6 +14,7 @@ import {
   ActivityIndicator,
   Picker,
   TextInput,
+  Alert
 } from "react-native";
 import firebase from '../remoteDB/firebaseDB';
 
@@ -44,12 +45,36 @@ export default function Add({ navigation }) {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const dbRef = firebase.firestore().collection('place');
 
   // On Mount
   useEffect(() => {
     console.log("Add screen is rendered");
-    setIsLoading(false);
+    setTimeout(() => setIsLoading(false), 500);
   }, []);
+
+  function storePlace() {
+    if(!(name && tags && imgurl && desc && address && phone)){
+        Alert.alert('Please fill in all the fields!')
+    } 
+    else {
+        setIsLoading(true); 
+        dbRef.add({
+            name: name,
+            tags: tags,
+            imgurl: imgurl,
+            desc: desc,
+            address: address,
+            phone: phone,
+        }).then((res) => {
+            navigation.goBack();
+        })
+        .catch((err) => {
+            console.error("Error found: ", err);
+            setIsLoading(false);
+        });
+    }
+  }
 
   return isLoading ? (
     <View style={global.preloader}>
@@ -106,7 +131,7 @@ export default function Add({ navigation }) {
       <View style={styles.button}>
         <Button
           title="Add Place"
-          onPress={() => navigation.goBack()}
+          onPress={() => storePlace()}
           color="#19AC52"
         />
       </View>
