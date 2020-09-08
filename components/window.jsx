@@ -4,7 +4,7 @@
 
 /* Imports
 =========================================== */
-import React from "react";
+import React, {useState} from "react";
 import {
   StyleSheet,
   View,
@@ -16,14 +16,17 @@ import {
 /* Component Definition
 =========================================== */
 export default function Window({ place, navigation }) {
+  const [uri, setUri] = useState(place.imgurl);
+
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Details", place)}>
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
           source={{
-            uri: place.imgurl,
+            uri: uri,
           }}
+          onError={() => setUri("https://image.flaticon.com/icons/png/512/1602/1602620.png")}
         >
           <View style={styles.label}>
             <Text style={styles.text}>{place.name}</Text>

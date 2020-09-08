@@ -49,7 +49,6 @@ export default function Full({ navigation }) {
         phone,
       });
     })
-    console.log(place);
     setPlace(place);
     setIsLoading(false);
   }

@@ -4,8 +4,10 @@
 
 /* Imports
 =========================================== */
-import React, { useState, useEffect, useReducer } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, ActivityIndicator, FlatList } from "react-native";
+import Window from '../components/window';
+import firebase from '../remoteDB/firebaseDB';
 
 // Importing global styles
 import { global } from "../styles/global";
@@ -14,17 +16,43 @@ const styles = StyleSheet.create({});
 
 export default function Explore({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [place, setPlace] = useState([]);
+  const dbRef = firebase.firestore().collection('place');
 
-  // On Mount
+  const getCollection = (querySnapShot) => {
+    let placeArr = [];
+    querySnapShot.forEach((res) => {
+      const { name, tags, imgurl, desc, address, phone } = res.data();
+      placeArr.push({
+        key: res.id,
+        name,
+        tags,
+        imgurl, 
+        desc, 
+        address, 
+        phone,
+      });
+    })
+    let nums = [];
+    while (nums.length < 3) {
+      const num = Math.floor(Math.random() * placeArr.length);
+      if (!nums.includes(num))
+        nums.push(num);
+    }
+    let place = [];
+    nums.forEach(x => place.push(placeArr[x]));
+    setPlace(place);
+    setIsLoading(false);
+  }
+
   useEffect(() => {
-    console.log("Explore screen is rendered");
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    console.log("Full screen is rendered");
+    const unsubscribe = dbRef.onSnapshot(getCollection);
+    
+    return function cleanup() {
+      unsubscribe();
+    }
   }, []);
-
-  useReducer();
 
   return isLoading ? (
     <View style={global.preloader}>
@@ -32,7 +60,14 @@ export default function Explore({ navigation }) {
     </View>
   ) : (
     <View style={global.container}>
-      <Text></Text>
+      <View style={styles.list}>
+        <FlatList
+          data={place}
+          renderItem={({ item }) => (
+            <Window place={item} navigation={navigation} />
+          )}
+        />
+      </View>
     </View>
   );
 }

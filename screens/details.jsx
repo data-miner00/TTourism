@@ -74,6 +74,7 @@ export default function Details({ navigation }) {
   let phone = navigation.getParam("phone");
 
   const [isLoading, setIsLoading] = useState(true);
+  const [uri, setUri] = useState(imguri);
 
   // On Mount
   useEffect(() => {
@@ -97,8 +98,9 @@ export default function Details({ navigation }) {
       <Image
         style={styles.image}
         source={{
-          uri: imguri,
+          uri: uri,
         }}
+        onError={() => setUri("https://image.flaticon.com/icons/png/512/1602/1602620.png")}
       />
 
       <View style={styles.inputGroup}>
