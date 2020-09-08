@@ -12,6 +12,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from "react-native";
+import firebase from '../remoteDB/firebaseDB';
 
 // Importing global styles
 import { global } from "../styles/global";
@@ -30,12 +31,36 @@ const styles = StyleSheet.create({
 });
 
 export default function Full({ navigation }) {
-  const place = navigation.getParam("attractions");
+  const [place, setPlace] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const dbRef = firebase.firestore().collection('place');
+
+  const getCollection = (querySnapShot) => {
+    const place = [];
+    querySnapShot.forEach((res) => {
+      const { name, tags, imgurl, desc, address, phone } = res.data();
+      place.push({
+        key: res.id,
+        name,
+        tags,
+        imgurl, 
+        desc, 
+        address, 
+        phone,
+      });
+    })
+    console.log(place);
+    setPlace(place);
+    setIsLoading(false);
+  }
 
   useEffect(() => {
     console.log("Full screen is rendered");
-    setTimeout(() => setIsLoading(false), 1000);
+    const unsubscribe = dbRef.onSnapshot(getCollection);
+    
+    return function cleanup() {
+      unsubscribe();
+    }
   }, []);
 
   return isLoading ? (

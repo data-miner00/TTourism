@@ -22,7 +22,7 @@ export default function Window({ place, navigation }) {
         <ImageBackground
           style={styles.image}
           source={{
-            uri: place.imguri,
+            uri: place.imgurl,
           }}
         >
           <View style={styles.label}>

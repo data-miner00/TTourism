@@ -68,10 +68,10 @@ export default function Details({ navigation }) {
   // Getting back the original data
   let name = navigation.getParam("place");
   let tags = navigation.getParam("tags");
-  let imguri = navigation.getParam("imguri");
-  let desc = navigation.getParam("description");
+  let imguri = navigation.getParam("imgurl");
+  let desc = navigation.getParam("desc");
   let address = navigation.getParam("address");
-  let phone = navigation.getParam("phonono");
+  let phone = navigation.getParam("phone");
 
   const [isLoading, setIsLoading] = useState(true);
 

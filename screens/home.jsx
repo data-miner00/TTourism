@@ -36,7 +36,6 @@ var headerColors = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: headerColors.bgColor,
   },
   seperator: {
     marginVertical: 8,
@@ -268,7 +267,7 @@ export default function Home({ navigation }) {
       <ActivityIndicator size="large" color="#9E9E9E" />
     </View>
   ) : (
-    <View style={global.container}>
+    <View style={[global.container, {backgroundColor: headerColors.bgColor}]}>
       <Button
         title="attractions list"
         color={primColor}

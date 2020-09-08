@@ -15,6 +15,7 @@ import {
   Picker,
   TextInput,
 } from "react-native";
+import firebase from '../remoteDB/firebaseDB';
 
 // Importing global styles
 import { global } from "../styles/global";
