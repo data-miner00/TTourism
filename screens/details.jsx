@@ -49,10 +49,12 @@ const styles = StyleSheet.create({
     marginBottom: 7,
   },
   image: {
-    width: 300,
-    height: 300,
+    width: "100%",
+    height: 280,
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 5,
+    marginBottom: 15,
   },
   baseText: {
     fontWeight: "bold",
@@ -76,7 +78,8 @@ export default function Details({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const [uri, setUri] = useState(imguri);
 
-  // On Mount
+  /* ComponentDidMount
+  =========================================== */
   useEffect(() => {
     console.log("Details screen is rendered");
 
@@ -100,7 +103,9 @@ export default function Details({ navigation }) {
         source={{
           uri: uri,
         }}
-        onError={() => setUri("https://image.flaticon.com/icons/png/512/1602/1602620.png")}
+        onError={() =>
+          setUri("https://image.flaticon.com/icons/png/512/1602/1602620.png")
+        }
       />
 
       <View style={styles.inputGroup}>

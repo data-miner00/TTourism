@@ -76,7 +76,7 @@ export default function Home({ navigation }) {
     console.log("Home screen loaded");
 
     // Set Timeout to bring out the loading effect XD
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => setIsLoading(false), 300);
   }, []);
 
   /* Themes Logic
@@ -152,12 +152,6 @@ export default function Home({ navigation }) {
       />
       <Seperator />
       <Button
-        title="favourite"
-        color={secColor}
-        onPress={() => navigation.navigate("Favourite")}
-      />
-      <Seperator />
-      <Button
         title="about"
         color={secColor}
         onPress={() => navigation.navigate("About")}
@@ -175,7 +169,9 @@ export default function Home({ navigation }) {
       <Seperator />
       <View style={[styles.weatherBox, { backgroundColor: backupColor }]}>
         <Text style={styles.weatherCity}>New Taipei City</Text>
-        <Text style={styles.weatherCity}>{weather}</Text>
+        <Text style={[styles.weatherCity, { fontWeight: "bold" }]}>
+          {weather}
+        </Text>
       </View>
     </View>
   );

@@ -1,24 +1,30 @@
 //
-//  This is the Explore Screen that
+//  This is the Explore Screen that randomly shows 3 item from the full list
 //
 
 /* Imports
 =========================================== */
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, ActivityIndicator, FlatList } from "react-native";
-import Window from '../components/window';
-import firebase from '../remoteDB/firebaseDB';
+import { StyleSheet, View, ActivityIndicator, FlatList } from "react-native";
+import Window from "../components/window";
+import firebase from "../remoteDB/firebaseDB";
 
 // Importing global styles
 import { global } from "../styles/global";
 
+/* Component Styles
+=========================================== */
 const styles = StyleSheet.create({});
 
+/* Component Definition
+=========================================== */
 export default function Explore({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const [place, setPlace] = useState([]);
-  const dbRef = firebase.firestore().collection('place');
+  const dbRef = firebase.firestore().collection("place");
 
+  /* Database Firebase Query
+  =========================================== */
   const getCollection = (querySnapShot) => {
     let placeArr = [];
     querySnapShot.forEach((res) => {
@@ -27,31 +33,32 @@ export default function Explore({ navigation }) {
         key: res.id,
         name,
         tags,
-        imgurl, 
-        desc, 
-        address, 
+        imgurl,
+        desc,
+        address,
         phone,
       });
-    })
+    });
     let nums = [];
     while (nums.length < 3) {
       const num = Math.floor(Math.random() * placeArr.length);
-      if (!nums.includes(num))
-        nums.push(num);
+      if (!nums.includes(num)) nums.push(num);
     }
     let place = [];
-    nums.forEach(x => place.push(placeArr[x]));
+    nums.forEach((x) => place.push(placeArr[x]));
     setPlace(place);
     setIsLoading(false);
-  }
+  };
 
+  /* ComoponentDidMount
+  =========================================== */
   useEffect(() => {
     console.log("Full screen is rendered");
     const unsubscribe = dbRef.onSnapshot(getCollection);
-    
+
     return function cleanup() {
       unsubscribe();
-    }
+    };
   }, []);
 
   return isLoading ? (

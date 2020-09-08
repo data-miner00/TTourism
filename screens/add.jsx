@@ -9,17 +9,18 @@ import {
   StyleSheet,
   Button,
   View,
-  FlatList,
   ScrollView,
   ActivityIndicator,
   TextInput,
-  Alert
+  Alert,
 } from "react-native";
-import firebase from '../remoteDB/firebaseDB';
+import firebase from "../remoteDB/firebaseDB";
 
 // Importing global styles
 import { global } from "../styles/global";
 
+/* Component Styles
+=========================================== */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -44,33 +45,37 @@ export default function Add({ navigation }) {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const dbRef = firebase.firestore().collection('place');
+  const dbRef = firebase.firestore().collection("place");
 
-  // On Mount
+  /* ComponentDidMount
+  =========================================== */
   useEffect(() => {
     console.log("Add screen is rendered");
     setTimeout(() => setIsLoading(false), 500);
   }, []);
 
+  /* Firebase Query
+  =========================================== */
   function storePlace() {
-    if(!(name && tags && imgurl && desc && address && phone)){
-        Alert.alert('Please fill in all the fields!')
-    } 
-    else {
-        setIsLoading(true); 
-        dbRef.add({
-            name: name,
-            tags: tags,
-            imgurl: imgurl,
-            desc: desc,
-            address: address,
-            phone: phone,
-        }).then((res) => {
-            navigation.goBack();
+    if (!(name && tags && imgurl && desc && address && phone)) {
+      Alert.alert("Please fill in all the fields!");
+    } else {
+      setIsLoading(true);
+      dbRef
+        .add({
+          name: name,
+          tags: tags,
+          imgurl: imgurl,
+          desc: desc,
+          address: address,
+          phone: phone,
+        })
+        .then((res) => {
+          navigation.goBack();
         })
         .catch((err) => {
-            console.error("Error found: ", err);
-            setIsLoading(false);
+          console.error("Error found: ", err);
+          setIsLoading(false);
         });
     }
   }

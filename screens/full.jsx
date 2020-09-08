@@ -5,20 +5,16 @@
 /* Imports
 =========================================== */
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  ActivityIndicator,
-} from "react-native";
-import firebase from '../remoteDB/firebaseDB';
+import { StyleSheet, View, FlatList, ActivityIndicator } from "react-native";
+import firebase from "../remoteDB/firebaseDB";
 
 // Importing global styles
 import { global } from "../styles/global";
 
 import Window from "../components/window";
 
+/* Component Styles
+=========================================== */
 const styles = StyleSheet.create({
   list: {
     flex: 1,
@@ -30,11 +26,15 @@ const styles = StyleSheet.create({
   },
 });
 
+/* Component Definition
+=========================================== */
 export default function Full({ navigation }) {
   const [place, setPlace] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const dbRef = firebase.firestore().collection('place');
+  const dbRef = firebase.firestore().collection("place");
 
+  /* Database Query
+  =========================================== */
   const getCollection = (querySnapShot) => {
     const place = [];
     querySnapShot.forEach((res) => {
@@ -43,23 +43,25 @@ export default function Full({ navigation }) {
         key: res.id,
         name,
         tags,
-        imgurl, 
-        desc, 
-        address, 
+        imgurl,
+        desc,
+        address,
         phone,
       });
-    })
+    });
     setPlace(place);
     setIsLoading(false);
-  }
+  };
 
+  /* ComponentDidMount
+  =========================================== */
   useEffect(() => {
     console.log("Full screen is rendered");
     const unsubscribe = dbRef.onSnapshot(getCollection);
-    
+
     return function cleanup() {
       unsubscribe();
-    }
+    };
   }, []);
 
   return isLoading ? (

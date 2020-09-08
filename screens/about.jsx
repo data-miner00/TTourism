@@ -4,15 +4,8 @@
 
 /* Imports
 =========================================== */
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, ScrollView } from "react-native";
 
 // Importing global styles
 import { global } from "../styles/global";
@@ -29,7 +22,7 @@ const styles = StyleSheet.create({
   },
   para: {
     fontSize: 16,
-    color: "crimson",
+    color: "#826e5a",
     padding: 5,
     textAlign: "left",
     marginBottom: 15,
@@ -63,9 +56,9 @@ export default function About({ navigation }) {
       </Text>
       <Text style={styles.para}>
         This is an App about Tourism Information Guide in Taipei city. It is
-        fully developed by respectful Project Manager Chong Mum Khong and his
-        beloved team members Lim Jing Chun, Goh Pei Xuan, Tan Wei Yan and Yin
-        Siew Fai.
+        fully guided by our Competent Project Owner Lim Jing Chun, developed by
+        respectful Project Manager Chong Mum Khong, Database Creater Goh Pei
+        Xuan and beloved team members Tan Wei Yan and Yin Siew Fai.
       </Text>
     </ScrollView>
   );

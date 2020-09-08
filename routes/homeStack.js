@@ -13,7 +13,6 @@ import Details from "../screens/details";
 import Add from "../screens/add";
 import Explore from "../screens/explore";
 import About from "../screens/about";
-import Favourite from "../screens/favourite";
 import Full from "../screens/full";
 import Weather from "../screens/weather";
 import Settings from "../screens/settings";
@@ -40,9 +39,6 @@ let screens = {
   },
   Full: {
     screen: Full,
-  },
-  Favourite: {
-    screen: Favourite,
   },
   Weather: {
     screen: Weather,

@@ -1,5 +1,5 @@
 //
-//  This is the
+//  This is the screen that shows the details of Taipei City from online API
 //
 
 /* Imports
@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, ActivityIndicator } from "react-native";
 
+// Importing global styles
 import { global } from "../styles/global";
 
 /* Local Styles
@@ -80,7 +81,6 @@ export default function Weather({ navigation }) {
   function kelvinToCelcius(kval) {
     return kval - 273.15;
   }
-  function getRealWeatherDescrption(desc) {}
 
   return isLoading ? (
     <View style={global.preloader}>

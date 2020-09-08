@@ -1,5 +1,5 @@
 //
-//  This is the Setting Screen that allows custom settings
+//  This is the Setting Screen that allows change theme
 //
 
 /* Imports
