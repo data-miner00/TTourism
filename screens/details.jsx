@@ -5,7 +5,15 @@
 /* Imports
 =========================================== */
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+  Button,
+} from "react-native";
 
 // Importing global styles
 import { global } from "../styles/global";
@@ -13,9 +21,44 @@ import { global } from "../styles/global";
 /* Component Styles (Local)
 =========================================== */
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    marginBottom: 15,
+  },
+  inputGroup: {
+    flex: 1,
+    padding: 0,
+    marginBottom: 15,
+  },
+  space: {
+    flex: 1,
+    padding: 0,
+    marginBottom: 35,
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  button: {
+    marginBottom: 7,
+  },
   image: {
-    width: "100%",
-    height: 200,
+    width: 300,
+    height: 300,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  baseText: {
+    fontWeight: "bold",
+  },
+  titleText: {
+    color: "#282c34",
   },
 });
 
@@ -23,31 +66,78 @@ const styles = StyleSheet.create({
 =========================================== */
 export default function Details({ navigation }) {
   // Getting back the original data
-  let place = navigation.getParam("place");
+  let name = navigation.getParam("place");
   let tags = navigation.getParam("tags");
   let imguri = navigation.getParam("imguri");
-  let description = navigation.getParam("description");
+  let desc = navigation.getParam("description");
   let address = navigation.getParam("address");
-  let phonono = navigation.getParam("phonono");
+  let phone = navigation.getParam("phonono");
+
+  const [isLoading, setIsLoading] = useState(true);
 
   // On Mount
   useEffect(() => {
     console.log("Details screen is rendered");
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, []);
 
-  return (
-    <View style={global.container}>
+  return isLoading ? (
+    <View style={global.preloader}>
+      <ActivityIndicator size="large" color="#9E9E9E" />
+    </View>
+  ) : (
+    <ScrollView style={styles.container}>
+      <View style={styles.inputGroup}>
+        <Text style={styles.baseText}>{name}</Text>
+      </View>
+
       <Image
         style={styles.image}
         source={{
           uri: imguri,
         }}
       />
-      <Text>{place}</Text>
-      <Text>{tags}</Text>
-      <Text>{description}</Text>
-      <Text>{address}</Text>
-      <Text>{phonono}</Text>
-    </View>
+
+      <View style={styles.inputGroup}>
+        <Text style={styles.titleText}>Tags: </Text>
+        <Text style={styles.baseText}>{tags}</Text>
+      </View>
+      <View style={styles.inputGroup}>
+        <Text style={styles.titleText}>Description: </Text>
+        <Text style={styles.baseText}>{desc}</Text>
+      </View>
+      <View style={styles.inputGroup}>
+        <Text style={styles.titleText}>Address: </Text>
+        <Text style={styles.baseText}>{address}</Text>
+      </View>
+      <View style={styles.inputGroup}>
+        <Text style={styles.titleText}>Phone: </Text>
+        <Text style={styles.baseText}>{phone}</Text>
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Back"
+          onPress={() => navigation.goBack()}
+          color="#19AC52"
+        />
+      </View>
+      <View style={styles.space}></View>
+    </ScrollView>
   );
 }
+
+/* Setting Headers
+=========================================== */
+Details["navigationOptions"] = (props) => ({
+  title: "Details",
+  headerTintColor: "white",
+  headerStyle: {
+    backgroundColor: "#621FF7",
+  },
+  headerTitleStyle: {
+    fontWeight: "bold",
+  },
+});

@@ -5,10 +5,17 @@
 /* Imports
 =========================================== */
 import React, { useState, useEffect, useMemo } from "react";
-import { StyleSheet, Text, View, FlatList, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ActivityIndicator,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 // Importing global styles
-import { global } from "../styles/global";
+import { global, colourScheme } from "../styles/global";
 
 /* Weather API Credentials
 =========================================== */
@@ -16,30 +23,77 @@ const APP_ID = "535b799ef7661f7c78e6dd820476ac63";
 const CITY_ID = "1665148";
 const URL = `https://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&appid=${APP_ID}`;
 
+/* Dynamic Styles
+=========================================== */
+var headerColors = {
+  headerTintColor: "white",
+  headerBackground: "#373D20",
+  bgColor: "#EFF1ED",
+};
+
 /* Component Styles
 =========================================== */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: headerColors.bgColor,
   },
-  list: {
-    flex: 1,
-    marginTop: 20,
+  seperator: {
+    marginVertical: 8,
+    borderBottomColor: "#737373",
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  weatherBox: {},
+  weatherCity: {},
+  weather: {},
 });
 
 /* Component Definition
 =========================================== */
 export default function Home({ navigation }) {
+  /* States and JSX
+  =========================================== */
   const [fullRes, setFullRes] = useState({});
   const [weather, setWeather] = useState("why cant change");
-  // ComponentDidMount
+  const Seperator = () => <View style={styles.seperator} />;
+  const [isLoading, setIsLoading] = useState(true);
+  const [theme, setTheme] = useState("theme1");
+  const [primColor, setPrimColor] = useState();
+  const [secColor, setSecColor] = useState();
+
+  /* ComponentDidMount
+  =========================================== */
   useEffect(() => {
     console.log("Home screen loaded");
+
+    // Set Timeout to bring out the loading effect XD
+    setTimeout(() => setIsLoading(false), 1000);
   }, []);
 
-  // Save the expensive calls
+  /* Themes Logic
+  =========================================== */
+  function useTheme(theme) {
+    headerColors = {
+      headerTintColor: theme.headerTintColor,
+      headerBackground: theme.headerBackground,
+      bgColor: theme.backgroundColor,
+    };
+    setPrimColor(theme.buttonPrimColor);
+    setSecColor(theme.buttonSecColor);
+  }
+
+  useEffect(() => {
+    theme === "theme1"
+      ? useTheme(colourScheme.theme1)
+      : theme === "theme2"
+      ? useTheme(colourScheme.theme2)
+      : useTheme(colourScheme.theme3);
+  }, [theme]);
+
+  /* Save Expensive Functions
+  =========================================== */
+  // Make sure that fetch URL will not be called each time the component
+  // rerenders by changing themes
   useMemo(() => {
     fetch(URL)
       .then((response) => response.json())
@@ -208,33 +262,52 @@ export default function Home({ navigation }) {
   ];
 
   const [place, setPlace] = useState(attractions);
-  const [theme, setTheme] = useState("light");
 
-  return (
+  return isLoading ? (
+    <View style={global.preloader}>
+      <ActivityIndicator size="large" color="#9E9E9E" />
+    </View>
+  ) : (
     <View style={global.container}>
       <Button
-        title="add attraction"
-        onPress={() => navigation.navigate("Add")}
-      />
-      <Button
-        title="explore city"
-        onPress={() => navigation.navigate("Explore")}
-      />
-      <Button
-        title="favourite"
-        onPress={() => navigation.navigate("Favourite")}
-      />
-      <Button
-        title="full list"
+        title="attractions list"
+        color={primColor}
         onPress={() => navigation.navigate("Full", { attractions: place })}
       />
+      <Seperator />
+      <Button
+        title="explore city"
+        color={primColor}
+        onPress={() => navigation.navigate("Explore")}
+      />
+      <Seperator />
       <Button
         title="weather"
+        color={primColor}
         onPress={() => navigation.navigate("Weather", fullRes)}
       />
-      <Button title="about" onPress={() => navigation.navigate("About")} />
+      <Seperator />
+      <Button
+        title="add attraction"
+        color={secColor}
+        onPress={() => navigation.navigate("Add")}
+      />
+      <Seperator />
+      <Button
+        title="favourite"
+        color={secColor}
+        onPress={() => navigation.navigate("Favourite")}
+      />
+      <Seperator />
+      <Button
+        title="about"
+        color={secColor}
+        onPress={() => navigation.navigate("About")}
+      />
+      <Seperator />
       <Button
         title="settings"
+        color={secColor}
         onPress={() =>
           navigation.navigate("Settings", {
             setTheme: (theme) => setTheme(theme),
@@ -243,8 +316,23 @@ export default function Home({ navigation }) {
       />
       <Text>Theme: {theme}</Text>
       <Text>Taipei weather: {weather} </Text>
+      <View style={styles.weatherBox}>
+        <Text style={styles.weatherCity}>New Taipei City</Text>
+        <Text style={styles.weather}>{weather}</Text>
+      </View>
     </View>
   );
 }
 
-Home["navigationOptions"] = (props) => ({ title: "Taipei Tourist Guide" });
+/* Setting Headers
+=========================================== */
+Home["navigationOptions"] = (props) => ({
+  title: "Taipei Tourist Guide",
+  headerTintColor: headerColors.headerTintColor,
+  headerStyle: {
+    backgroundColor: headerColors.headerBackground,
+  },
+  headerTitleStyle: {
+    fontWeight: "bold",
+  },
+});

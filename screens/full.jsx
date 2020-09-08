@@ -10,7 +10,7 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 
 // Importing global styles
@@ -23,16 +23,26 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
   },
+  container: {
+    flex: 1,
+    paddingBottom: 22,
+  },
 });
 
 export default function Full({ navigation }) {
   const place = navigation.getParam("attractions");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     console.log("Full screen is rendered");
-  });
+    setTimeout(() => setIsLoading(false), 1000);
+  }, []);
 
-  return (
+  return isLoading ? (
+    <View style={global.preloader}>
+      <ActivityIndicator size="large" color="#9E9E9E" />
+    </View>
+  ) : (
     <View style={global.container}>
       <View style={styles.list}>
         <FlatList
@@ -46,4 +56,15 @@ export default function Full({ navigation }) {
   );
 }
 
-Full["navigationOptions"] = (props) => ({ title: "Attractions List" });
+/* Setting Headers
+=========================================== */
+Full["navigationOptions"] = (props) => ({
+  title: "Attractions List",
+  headerTintColor: "white",
+  headerStyle: {
+    backgroundColor: "#621FF7",
+  },
+  headerTitleStyle: {
+    fontWeight: "bold",
+  },
+});
